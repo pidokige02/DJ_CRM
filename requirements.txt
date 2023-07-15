@@ -1,0 +1,4 @@
+Django==4.2.2
+django-allauth==0.52.0
+django-cors-headers==4.1.0
+django-filter==23.2
