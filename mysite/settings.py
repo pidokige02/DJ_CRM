@@ -41,9 +41,10 @@ INSTALLED_APPS = [
 
     'polls',
     'leads',
-    'agents'
+    'agents',
     # "polls.apps.PollsConfig",
     # 'leads.apps.LeadsConfig'
+    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
+
+# INTERNAL_IPS = ['127.0.0.1',"0.0.0.0:8000"]
 
 ROOT_URLCONF = 'mysite.urls'
 

@@ -31,6 +31,7 @@ class Agent(models.Model):
         return self.user.email
 
 
+# user를 만들면 자돋으로 UserProfile 도 만들어 준다
 def post_user_created_signal(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
