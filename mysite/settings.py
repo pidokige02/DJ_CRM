@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third party apps
+    'crispy_forms',
+    "crispy_tailwind",
+
+    # Local apps
     'polls',
     'leads',
     'agents',
@@ -144,3 +149,7 @@ LOGIN_REDIRECT_URL = "/leads"
 LOGIN_URL = "/login"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+CRISPY_TEMPLATE_PACK = 'tailwind'
