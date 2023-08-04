@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     # Third party apps
     'crispy_forms',
     "crispy_tailwind",
-
+    'tailwind',
+    'theme',
+    # 'django_browser_reload'
     # Local apps
     'polls',
     'leads',
@@ -56,10 +58,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # "django_browser_reload.middleware.BrowserReloadMiddleware",
     # 'debug_toolbar.middleware.DebugToolbarMiddleware'
 ]
 
-# INTERNAL_IPS = ['127.0.0.1',"0.0.0.0:8000"]
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -179,3 +184,5 @@ LOGGING = {
         'level': 'WARNING',
     },
 }
+
+TAILWIND_APP_NAME = 'theme'
