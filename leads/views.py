@@ -1,4 +1,7 @@
+import logging
+from django.contrib import messages
 from django.core.mail import send_mail
+from django.http.response import JsonResponse
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
@@ -14,6 +17,7 @@ from .forms import (
     CategoryModelForm
 )
 
+logger = logging.getLogger(__name__)
 
 # CRUD+L - Create, Retrieve, Update and Delete + List
 class SignupView(generic.CreateView):
@@ -112,7 +116,7 @@ class LeadCreateView(OrganisorAndLoginRequiredMixin, generic.CreateView):
             from_email="test@test.com",
             recipient_list=["test2@test.com"]
         )
-
+        messages.success(self.request, "You have successfully created a lead")
         return super(LeadCreateView, self).form_valid(form)
 
 def lead_create(request):
@@ -299,7 +303,7 @@ class CategoryDeleteView(OrganisorAndLoginRequiredMixin, generic.DeleteView):
                 organisation=user.agent.organisation
             )
         return queryset
-    
+
 class LeadCategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "leads/lead_category_update.html"
     form_class = LeadCategoryUpdateForm
@@ -360,3 +364,17 @@ class LeadCategoryUpdateView(LoginRequiredMixin, generic.UpdateView):
 #         "form": form
 #     }
 #     return render(request, "leads/lead_create.html", context)
+
+class LeadJsonView(generic.View):
+
+    def get(self, request, *args, **kwargs):
+
+        qs = list(Lead.objects.all().values(
+            "first_name",
+            "last_name",
+            "age")
+        )
+
+        return JsonResponse({
+            "qs": qs,
+        })
