@@ -1,9 +1,21 @@
-<h1>{{ question.question_text }}</h1>
+{% extends "base.html" %}
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+{% block content %}
 
-<a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<section class="text-gray-700 body-font">
+    <div class="container px-5 py-5 mx-auto">
+        <h1 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">{{ question.question_text }}</h1>
+
+        <div class="m-5">
+            <ul>
+            {% for choice in question.choice_set.all %}
+                <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="mt-3">
+            <a href="{% url 'polls:detail' question.id %}"><strong>Vote again?</strong></a>
+        </div>
+    </div>
+</section>
+{% endblock content %}
